@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
+  <link href="https://unpkg.com/sanitize.css/typography.css" rel="stylesheet" />
+  <title>{{.Title}}</title>
+
+  <style>
+    body {
+      display: flex;
+      min-height: 85vh;
+      color: #222
+    }
+
+    main {
+      margin: auto;
+      max-width: 600px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #666
+    }
+
+    a:hover {
+      color: #333
+    }
+
+    .wrapperTitle {
+      display: flex;
+      align-items: center;
+    }
+
+    .wrapperTitle>h1 {
+      flex: 1
+    }
+
+    .wrapperLinks {
+      display: flex;
+      flex-direction: column;
+
+    }
+
+    .wrapperLinks>a {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid #999;
+    }
+
+    .wrapperLinks>a:hover {
+      border-color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="wrapperTitle">
+      <h1>{{.Title}}</h1>
+      {{if (ne .Slug "intro")}}
+      <a href="/intro"><small>intro 🏠</small></a>
+      {{end}}
+    </div>
+    {{range .Story}}
+    <p>{{.}}</p>
+    {{end}}
+    <div class="wrapperLinks">
+      {{range .Options}}
+      <a href={{.Slug}}>
+        {{.Text}}
+      </a>
+      {{end}}
+    </div>
+  </main>
+</body>
+
+</html>
